@@ -1,0 +1,26 @@
+﻿@page
+@model AnarchyChess.Areas.Vote.Pages.IndexModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Vote for a new rule";
+}
+
+<h1>Check out these rule propositions:</h1>
+
+@foreach (var proposition in Model.Propositions)
+{
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@proposition.Text</h5>
+            <p class="card-text">Votes: @proposition.Score</p>
+            <a href="/Vote/Proposition/@proposition.GUID" class="btn btn-primary">Vote</a>
+        </div>
+    </div>
+}
+
+<h1>Add your own rule proposition:</h1>
+<form method="post">
+    <label asp-for="PropositionText">Describe your proposition below:</label>
+    <input type="text" asp-for="PropositionText">
+    <input type="submit" class="btn btn-primary">
+</form>

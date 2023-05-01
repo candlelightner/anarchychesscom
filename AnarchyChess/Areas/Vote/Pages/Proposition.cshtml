@@ -1,0 +1,55 @@
+﻿@page "{PropositionId?}"
+@model AnarchyChess.Areas.Vote.Pages.PropositionModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Vote for a new rule";
+}
+
+<h1>Vote for a new rule</h1>
+
+@if (Model.HasVoted)
+{
+    <h2>You have voted!</h2>
+    if(Model.HasVotedFor)
+    {
+        <h3>You chose to vote for this proposition</h3>
+    }
+    else
+    {
+        <h3>You chose to vote against this proposition</h3>
+    }
+}
+<form method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Proposition text</td>
+                            <td>@Model.Proposition?.Text</td>
+                        </tr>
+                        <tr>
+                            <td>Created by</td>
+                            <td>@Model.Proposition?.Created?.UserName</td>
+                        </tr>
+                        <tr>
+                            <td>Sum of votes</td>
+                            <td>@Model.Proposition?.Score</td>
+                        </tr>
+                        <tr>
+                            <td>Proposition GUID (For checking integrity)</td>
+                            <td>@Model.Proposition?.GUID</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @if (!Model.HasVoted)
+    {
+           <button type="submit" asp-page-handler="For" class="btn btn-success">Vote for!</button>
+           <button type="submit" asp-page-handler="Against" class="btn btn-danger">Vote against!</button>
+    }
+</form>

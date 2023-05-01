@@ -1,0 +1,44 @@
+﻿@page "{GameId?}"
+@model AnarchyChess.Areas.Play.GameModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "A game of chess";
+}
+
+@section Scripts {
+    <script src="/js/gameCommunication.js"></script>
+}
+
+@section head {
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/chessBoard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.16/signalr.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script>
+        var gameId = "@Model.GameId";
+        var isWhite = @Model.IsWhite.ToString().ToLower();
+        var gameState = [];
+
+        @foreach(var piece in Model.GameState)
+        {
+            <text>
+                gameState.push({
+                    position: "@piece.Split("|")[0]",
+                    pieceType: "@piece.Split("|")[1]"
+                });
+            </text>
+        }
+    </script>
+}
+
+<h2 class="text-center my-4">Chess Board</h2>
+<div class="chess-board mx-auto">
+    @for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            var cssClass = (i + j) % 2 == 0 ? "white-square" : "black-square";
+            <div class="chess-square @cssClass" data-position="@((char)(j + 97))@(8 - i)"></div>
+        }
+    }
+</div>

@@ -1,0 +1,2 @@
+﻿Add-Migration <name> -Context AnarchyChessIdContext
+Update-Database -Context AnarchyChessIdContext

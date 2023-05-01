@@ -1,0 +1,41 @@
+# Visual Studio files and directories
+.vs/
+*.suo
+*.user
+*.csproj.user
+*.cache
+*.log
+bin/
+obj/
+TestResults/
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Build results
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.appx
+*.appxbundle
+*.msi
+*.msix
+*.msm
+*.msp
+*.vsix
+*.zip
+*.tar.gz
+*.rar
+
+# Publish files
+*.pubxml
+*.pubxml.user
+*.xml
+*.config

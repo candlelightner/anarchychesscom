@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+
+@using Microsoft.AspNetCore.Identity
+@using AnarchyChess.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a href="/Play/Game">Click here to play a game of chess</a>
+        }
+        else
+        {
+            <a href="/Identity/Account/Register">Click here to register an account</a>
+        }
+    </p>
+    <p>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a href="/Vote/">Click here to view rule propositions & to create your own</a>
+        }
+        else
+        {
+            <a href="/Identity/Account/Login">Click here to login</a>
+        }
+    </p>
+</div>
